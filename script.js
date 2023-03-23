@@ -20,7 +20,7 @@ for (let i = 1; i < 10; i++) {
 function checkCr() {
   while(check) {
     playerSymbol = prompt("Who starts the game? X or O")
-    if(playerSymbol == null || playerSymbol == "" || playerSymbol != "X" || "O") {
+    if(playerSymbol != "X" || "O") {
       continue;
     }
     else {
