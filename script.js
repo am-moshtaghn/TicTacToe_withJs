@@ -1,6 +1,5 @@
-let playerSymbol = "X";
+let playerSymbol;
 let gameEnd = false;
-
 let winElement = [
   [1, 2, 3],
   [4, 5, 6],
@@ -11,9 +10,24 @@ let winElement = [
   [1, 5, 9],
   [3, 5, 7],
 ];
+let check = true
 let inTag = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+document.getElementById("playerTurn").innerHTML =
+  playerSymbol + "<br/>" + "turn";
 for (let i = 1; i < 10; i++) {
   document.getElementById(i.toString()).addEventListener("click", turn);
+}
+function checkCr() {
+  while(check) {
+    playerSymbol = prompt("Who starts the game? X or O")
+    if(playerSymbol == null) {
+      continue;
+    }
+    else {
+      document.getElementById("playerTurn").innerHTML = playerSymbol + "<br/>" + "turn";
+      break;
+    }
+  }
 }
 function turn() {
   if (this.innerHTML in inTag && !gameEnd) {
@@ -28,7 +42,8 @@ function turn() {
     }
   }
   (function () {
-    document.getElementById("playerTurn").innerHTML = playerSymbol+ "<br/>" + " " + "turn";
+    document.getElementById("playerTurn").innerHTML =
+      playerSymbol + "<br/>" + " " + "turn";
   })();
 }
 function checkWin() {
@@ -54,7 +69,9 @@ document.getElementById("resetGame").addEventListener("click", function () {
     document.getElementById(i.toString()).classList.remove("x");
     document.getElementById(i.toString()).classList.remove("o");
     document.getElementById(i.toString()).classList.remove("win");
-    document.getElementById("playerTurn").innerHTML = "X"+ "<br/>" +"turn";
     gameEnd = false;
   }
+  checkCr()
+  document.getElementById("playerTurn").innerHTML =
+      playerSymbol + "<br/>" + "turn";
 });
